@@ -17,7 +17,7 @@ public class Usuario {
     @Column(unique = true)
     private String email;
     private String contrasena;
-    private LocalDate fechaRegistro;
+    private String fechaRegistro;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Avatar avatar;
@@ -45,18 +45,18 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombre, String email, LocalDate fechaRegistro, String contrasena, Avatar avatar, List<Recompensa> recompensas, List<Meta> metas, List<Movimiento> movimientos, List<Tarea> tareas, List<UsuarioItem> usuarioItems) {
+    public Usuario(Long id, String nombre, Avatar avatar, List<Recompensa> recompensas, List<UsuarioItem> usuarioItems, List<Meta> metas, List<Tarea> tareas, List<Movimiento> movimientos, String fechaRegistro, String contrasena, String email) {
         this.id = id;
         this.nombre = nombre;
-        this.email = email;
-        this.fechaRegistro = fechaRegistro;
-        this.contrasena = contrasena;
         this.avatar = avatar;
         this.recompensas = recompensas;
-        this.metas = metas;
-        this.movimientos = movimientos;
-        this.tareas = tareas;
         this.usuarioItems = usuarioItems;
+        this.metas = metas;
+        this.tareas = tareas;
+        this.movimientos = movimientos;
+        this.fechaRegistro = fechaRegistro;
+        this.contrasena = contrasena;
+        this.email = email;
     }
 
     public Long getId() {
@@ -65,70 +65,6 @@ public class Usuario {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public Avatar getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(Avatar avatar) {
-        this.avatar = avatar;
-    }
-
-    public LocalDate getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDate fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public List<Recompensa> getRecompensas() {
-        return recompensas;
-    }
-
-    public void setRecompensas(List<Recompensa> recompensas) {
-        this.recompensas = recompensas;
-    }
-
-    public List<Movimiento> getMovimientos() {
-        return movimientos;
-    }
-
-    public void setMovimientos(List<Movimiento> movimientos) {
-        this.movimientos = movimientos;
-    }
-
-    public List<Tarea> getTareas() {
-        return tareas;
-    }
-
-    public void setTareas(List<Tarea> tareas) {
-        this.tareas = tareas;
     }
 
     public List<Meta> getMetas() {
@@ -147,6 +83,70 @@ public class Usuario {
         this.usuarioItems = usuarioItems;
     }
 
+    public List<Tarea> getTareas() {
+        return tareas;
+    }
+
+    public void setTareas(List<Tarea> tareas) {
+        this.tareas = tareas;
+    }
+
+    public List<Movimiento> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<Movimiento> movimientos) {
+        this.movimientos = movimientos;
+    }
+
+    public List<Recompensa> getRecompensas() {
+        return recompensas;
+    }
+
+    public void setRecompensas(List<Recompensa> recompensas) {
+        this.recompensas = recompensas;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(String fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -154,7 +154,7 @@ public class Usuario {
                 ", nombre='" + nombre + '\'' +
                 ", email='" + email + '\'' +
                 ", contrasena='" + contrasena + '\'' +
-                ", fechaRegistro=" + fechaRegistro +
+                ", fechaRegistro='" + fechaRegistro + '\'' +
                 ", avatar=" + avatar +
                 ", recompensas=" + recompensas +
                 ", movimientos=" + movimientos +
