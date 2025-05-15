@@ -1,0 +1,15 @@
+package com.example.FluGoal.repository;
+
+import com.example.FluGoal.model.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+
+    @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM usuario u WHERE u.correo = :correo", nativeQuery = true)
+        Boolean existeCorreo(@Param("correo") String correo);
+
+}
