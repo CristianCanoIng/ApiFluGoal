@@ -3,6 +3,7 @@ package com.example.FluGoal.controller;
 import com.example.FluGoal.model.Usuario;
 import com.example.FluGoal.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,5 +49,10 @@ public class UsuarioController {
         }
     }
 
+    @GetMapping("/login")
+    public ResponseEntity<Map<String, Object>> login(@RequestParam String email, @RequestParam String password) {
+        Map<String, Object> datos = usuarioService.obtenerIdYNombre(email, password);
+        return datos != null ? ResponseEntity.ok(datos) : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
 
 }
