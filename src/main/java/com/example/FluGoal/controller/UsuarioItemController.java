@@ -34,4 +34,6 @@ public class UsuarioItemController {
     public void eliminarUsuarioItem(@PathVariable int id) {
         usuarioItemService.eliminarUsuarioItem(id);
     }
+
+
 }

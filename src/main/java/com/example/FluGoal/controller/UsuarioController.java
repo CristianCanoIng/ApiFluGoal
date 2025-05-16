@@ -23,4 +23,11 @@ public class UsuarioController {
         Boolean existe = usuarioService.verificarCorreoExistente(correo);
         return ResponseEntity.ok(existe);
     }
+
+    @GetMapping("/porCorreo/{email}")
+    public ResponseEntity<Usuario> obtenerUsuarioPorEmail(@PathVariable String email) {
+        return usuarioService.obtenerUsuarioPorEmail(email)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
