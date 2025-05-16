@@ -13,21 +13,24 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping
-    public Usuario guardarUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.guardarUsuario(usuario);
-    }
-
     @GetMapping("/correo/{correo}")
     public ResponseEntity<Boolean> verificarCorreo(@PathVariable("correo") String correo) {
         Boolean existe = usuarioService.verificarCorreoExistente(correo);
         return ResponseEntity.ok(existe);
     }
 
-    @GetMapping("/porCorreo/{email}")
+    @PostMapping
+    public ResponseEntity<Void> guardarUsuario(@RequestBody Usuario usuario) {
+        usuarioService.guardarUsuario(usuario);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/email/{email}")
     public ResponseEntity<Usuario> obtenerUsuarioPorEmail(@PathVariable String email) {
         return usuarioService.obtenerUsuarioPorEmail(email)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+
 }
