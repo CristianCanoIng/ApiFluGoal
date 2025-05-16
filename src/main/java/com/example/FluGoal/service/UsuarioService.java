@@ -26,4 +26,8 @@ public class UsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
+    public String obtenerNombreUsuarioPorId(Long id) {
+        return usuarioRepository.obtenerNombrePorId(id);
+    }
+
 }
