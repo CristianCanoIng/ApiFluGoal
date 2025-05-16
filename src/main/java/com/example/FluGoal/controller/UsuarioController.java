@@ -49,10 +49,4 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(@RequestParam String email, @RequestParam String password) {
-        Map<String, Object> datos = usuarioService.obtenerIdYNombre(email, password);
-        return datos != null ? ResponseEntity.ok(datos) : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-    }
-
 }

@@ -21,7 +21,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("SELECT u.nombre FROM Usuario u WHERE u.id = :id")
     String obtenerNombrePorId(@Param("id") Long id);
 
-    @Query("SELECT u.id, u.nombre FROM Usuario u WHERE u.email = :email AND u.password = :password")
-    List<Object[]> findIdAndNombreByEmailAndPassword(@Param("email") String email, @Param("password") String password);
-
 }
