@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
@@ -34,10 +37,16 @@ public class UsuarioController {
 
 
     @GetMapping("/{id}/nombre")
-    public ResponseEntity<String> obtenerNombre(@PathVariable Long id) {
+    public ResponseEntity<Map<String, String>> obtenerNombre(@PathVariable Long id) {
         String nombre = usuarioService.obtenerNombreUsuarioPorId(id);
-        return nombre != null ? ResponseEntity.ok(nombre)
-                : ResponseEntity.notFound().build();
+        if (nombre != null) {
+            Map<String, String> respuesta = new HashMap<>();
+            respuesta.put("nombre", nombre);
+            return ResponseEntity.ok(respuesta);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 
 }
