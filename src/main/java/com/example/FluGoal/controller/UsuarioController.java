@@ -36,7 +36,6 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-
     @GetMapping("/{id}/nombre")
     public ResponseEntity<Map<String, String>> obtenerNombre(@PathVariable Long id) {
         String nombre = usuarioService.obtenerNombreUsuarioPorId(id);
