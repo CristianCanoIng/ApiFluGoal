@@ -14,19 +14,12 @@ public class MetaService {
     @Autowired
     private MetaRepository metaRepository;
 
-    public List<Meta> listarMetas() {
-        return metaRepository.findAll();
-    }
-
     public Meta guardarMeta(Meta meta) {
         return metaRepository.save(meta);
     }
 
-    public Optional<Meta> obtenerMetaPorId(int id) {
-        return metaRepository.findById(id);
+    public List<Meta> obtenerMetasPorUsuario(Long usuarioId) {
+        return metaRepository.findByUsuarioId(usuarioId);
     }
 
-    public void eliminarMeta(int id) {
-        metaRepository.deleteById(id);
-    }
 }
