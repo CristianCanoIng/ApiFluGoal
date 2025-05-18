@@ -1,12 +1,13 @@
 package com.example.FluGoal.service;
 
 import com.example.FluGoal.model.Meta;
+import com.example.FluGoal.model.Usuario;
 import com.example.FluGoal.repository.MetaRepository;
+import com.example.FluGoal.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MetaService {
@@ -14,7 +15,13 @@ public class MetaService {
     @Autowired
     private MetaRepository metaRepository;
 
-    public Meta guardarMeta(Meta meta) {
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    public Meta guardarMeta(Meta meta, Integer usuarioId) {
+        Usuario usuario = usuarioRepository.findById(usuarioId)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + usuarioId));
+        meta.setUsuario(usuario);
         return metaRepository.save(meta);
     }
 
