@@ -1,5 +1,6 @@
 package com.example.FluGoal.controller;
 
+import com.example.FluGoal.model.Meta;
 import com.example.FluGoal.model.Movimiento;
 import com.example.FluGoal.service.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,13 @@ public class MovimientoController {
     @Autowired
     private MovimientoService movimientoService;
 
-    @PostMapping
-    public Movimiento guardarMovimiento(@RequestBody Movimiento movimiento) {
-        return movimientoService.guardarMovimiento(movimiento);
+    @PostMapping("/usuario/{usuarioId}")
+    public ResponseEntity<Movimiento> guardarMovimientoConUsuario(
+            @PathVariable Integer usuarioId,
+            @RequestBody Movimiento movimiento
+    ) {
+        Movimiento guardada = movimientoService.guardarMovimiento(movimiento, usuarioId);
+        return ResponseEntity.ok(guardada);
     }
 
     @GetMapping("/metas/{metaId}/ingresosMeta")
@@ -24,7 +29,4 @@ public class MovimientoController {
         double total = movimientoService.obtenerTotalIngresadoEnMeta(metaId);
         return ResponseEntity.ok(total);
     }
-
-
-
 }
