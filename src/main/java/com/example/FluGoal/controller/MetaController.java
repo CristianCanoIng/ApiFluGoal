@@ -28,4 +28,25 @@ public class MetaController {
     public List<Meta> obtenerMetasPorUsuario(@PathVariable Long usuarioId) {
         return metaService.obtenerMetasPorUsuario(usuarioId);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Meta> obtenerMetaPorId(@PathVariable Long id) {
+        Meta meta = metaService.obtenerMetaPorId(id);
+        return ResponseEntity.ok(meta);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Meta> actualizarMeta(
+            @PathVariable Long id,
+            @RequestBody Meta metaActualizada
+    ) {
+        Meta meta = metaService.actualizarMeta(id, metaActualizada);
+        return ResponseEntity.ok(meta);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarMeta(@PathVariable Long id) {
+        metaService.eliminarMeta(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MetaRepository extends JpaRepository<Meta, Integer> {
+public interface MetaRepository extends JpaRepository<Meta, Long> {
 
     @Query("SELECT m FROM Meta m WHERE m.usuario.id = :usuarioId")
     List<Meta> findByUsuarioId(@Param("usuarioId") Long usuarioId);

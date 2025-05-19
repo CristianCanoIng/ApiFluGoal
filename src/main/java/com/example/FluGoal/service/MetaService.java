@@ -29,4 +29,28 @@ public class MetaService {
         return metaRepository.findByUsuarioId(usuarioId);
     }
 
+    public Meta obtenerMetaPorId(Long id) {
+        return metaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Meta no encontrada con ID: " + id));
+    }
+
+
+    public Meta actualizarMeta(Long metaId, Meta metaActualizada) {
+        Meta metaExistente = metaRepository.findById(metaId)
+                .orElseThrow(() -> new RuntimeException("Meta no encontrada con ID: " + metaId));
+
+        metaExistente.setNombre(metaActualizada.getNombre());
+        metaExistente.setMontoTotal(metaActualizada.getMontoTotal());
+        metaExistente.setFechaInicio(metaActualizada.getFechaInicio());
+        metaExistente.setFechaFin(metaActualizada.getFechaFin());
+
+        return metaRepository.save(metaExistente);
+    }
+
+    public void eliminarMeta(Long metaId) {
+        Meta meta = metaRepository.findById(metaId)
+                .orElseThrow(() -> new RuntimeException("Meta no encontrada con ID: " + metaId));
+        metaRepository.delete(meta);
+    }
+
 }
