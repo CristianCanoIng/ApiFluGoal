@@ -10,7 +10,7 @@ public class Movimiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String tipo;  // Ingreso /gasto /ahorro
+    private String tipo;  // Ingreso /Egreso /Ahorro /IngresoMeta
     private double monto;
     private LocalDate fecha;
     private String descripcion;

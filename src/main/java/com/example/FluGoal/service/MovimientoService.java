@@ -1,6 +1,5 @@
 package com.example.FluGoal.service;
 
-import com.example.FluGoal.model.Avatar;
 import com.example.FluGoal.model.Movimiento;
 import com.example.FluGoal.repository.MovimientoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +14,12 @@ public class MovimientoService {
     @Autowired
     private MovimientoRepository movimientoRepository;
 
-    public List<Movimiento> listarMovimientos() {
-        return movimientoRepository.findAll();
-    }
-
     public Movimiento guardarMovimiento(Movimiento movimiento) {
         return movimientoRepository.save(movimiento);
     }
 
-    public Optional<Movimiento> obtenerMovimientoPorId(int id) {
-        return movimientoRepository.findById(id);
+    public double obtenerTotalIngresadoEnMeta(Long metaId) {
+        return movimientoRepository.sumarIngresosMetaPorMetaId(metaId);
     }
 
-    public void eliminarMovimiento(int id) {
-        movimientoRepository.deleteById(id);
-    }
 }
