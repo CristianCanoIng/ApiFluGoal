@@ -1,7 +1,6 @@
 package com.example.FluGoal.controller;
 
 import com.example.FluGoal.model.Meta;
-import com.example.FluGoal.model.Usuario;
 import com.example.FluGoal.service.MetaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
