@@ -44,8 +44,20 @@ public class MovimientoController {
 
     @GetMapping("/usuario/{usuarioId}/ingresos")
     public ResponseEntity<List<Movimiento>> obtenerIngresosPorUsuario(@PathVariable Long usuarioId) {
-        List<Movimiento> egresos = movimientoService.obtenerIngresosPorUsuario(usuarioId);
-        return ResponseEntity.ok(egresos);
+        List<Movimiento> ingresos = movimientoService.obtenerIngresosPorUsuario(usuarioId);
+        return ResponseEntity.ok(ingresos);
+    }
+
+    @GetMapping("/usuario/{usuarioId}/ahorros")
+    public ResponseEntity<List<Movimiento>> obtenerAhorrosPorUsuario(@PathVariable Long usuarioId) {
+        List<Movimiento> ahorros = movimientoService.obtenerAhorrosPorUsuario(usuarioId);
+        return ResponseEntity.ok(ahorros);
+    }
+
+    @GetMapping("/usuario/{usuarioId}/ingresos_metas")
+    public ResponseEntity<List<Movimiento>> obtenerIngresosMetasPorUsuario(@PathVariable Long usuarioId) {
+        List<Movimiento> ingresos_metas = movimientoService.obtenerIngresosMetasPorUsuario(usuarioId);
+        return ResponseEntity.ok(ingresos_metas);
     }
 
     @PutMapping("/{movimientoId}")

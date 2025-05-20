@@ -41,6 +41,14 @@ public class MovimientoService {
         return movimientoRepository.findIngresosByUsuarioIdOrderByFechaDesc(usuarioId);
     }
 
+    public List<Movimiento> obtenerIngresosMetasPorUsuario(Long usuarioId) {
+        return movimientoRepository.findIngresosMetasByUsuarioIdOrderByFechaDesc(usuarioId);
+    }
+
+    public List<Movimiento> obtenerAhorrosPorUsuario(Long usuarioId) {
+        return movimientoRepository.findAhorrosByUsuarioIdOrderByFechaDesc(usuarioId);
+    }
+
     public void eliminarMovimientoPorId(Integer movimientoId) {
         if (!movimientoRepository.existsById(movimientoId)) {
             throw new RuntimeException("Movimiento no encontrado con ID: " + movimientoId);
