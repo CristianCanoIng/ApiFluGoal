@@ -42,6 +42,12 @@ public class MovimientoController {
         return ResponseEntity.ok(egresos);
     }
 
+    @GetMapping("/usuario/{usuarioId}/ingresos")
+    public ResponseEntity<List<Movimiento>> obtenerIngresosPorUsuario(@PathVariable Long usuarioId) {
+        List<Movimiento> egresos = movimientoService.obtenerIngresosPorUsuario(usuarioId);
+        return ResponseEntity.ok(egresos);
+    }
+
     @PutMapping("/{movimientoId}")
     public ResponseEntity<Movimiento> actualizarMovimiento(
             @PathVariable Integer movimientoId,

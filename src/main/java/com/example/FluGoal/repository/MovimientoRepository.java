@@ -20,4 +20,7 @@ public interface MovimientoRepository extends JpaRepository<Movimiento, Integer>
     @Query("SELECT m FROM Movimiento m WHERE m.usuario.id = :usuarioId AND m.tipo = 'Egreso' ORDER BY m.fecha DESC")
     List<Movimiento> findEgresosByUsuarioIdOrderByFechaDesc(@Param("usuarioId") Long usuarioId);
 
+    @Query("SELECT m FROM Movimiento m WHERE m.usuario.id = :usuarioId AND m.tipo = 'Ingreso' ORDER BY m.fecha DESC")
+    List<Movimiento> findIngresosByUsuarioIdOrderByFechaDesc(@Param("usuarioId") Long usuarioId);
+
 }
