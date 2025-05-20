@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/api/movimientos")
 public class MovimientoController {
@@ -35,5 +34,26 @@ public class MovimientoController {
     public ResponseEntity<List<Movimiento>> obtenerHistorialDeMovimientos(@PathVariable Long usuarioId) {
         List<Movimiento> movimientos = movimientoService.obtenerMovimientosPorUsuarioOrdenadosPorFecha(usuarioId);
         return ResponseEntity.ok(movimientos);
+    }
+
+    @GetMapping("/usuario/{usuarioId}/egresos")
+    public ResponseEntity<List<Movimiento>> obtenerEgresosPorUsuario(@PathVariable Long usuarioId) {
+        List<Movimiento> egresos = movimientoService.obtenerEgresosPorUsuario(usuarioId);
+        return ResponseEntity.ok(egresos);
+    }
+
+    @PutMapping("/{movimientoId}")
+    public ResponseEntity<Movimiento> actualizarMovimiento(
+            @PathVariable Integer movimientoId,
+            @RequestBody Movimiento movimientoActualizado
+    ) {
+        Movimiento movimiento = movimientoService.actualizarMovimiento(movimientoId, movimientoActualizado);
+        return ResponseEntity.ok(movimiento);
+    }
+
+    @DeleteMapping("/{movimientoId}")
+    public ResponseEntity<Void> eliminarMovimiento(@PathVariable Integer movimientoId) {
+        movimientoService.eliminarMovimientoPorId(movimientoId);
+        return ResponseEntity.noContent().build();
     }
 }

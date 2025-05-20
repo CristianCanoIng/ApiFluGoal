@@ -33,4 +33,28 @@ public class MovimientoService {
         return movimientoRepository.findAllByUsuarioIdOrderByFechaDesc(usuarioId);
     }
 
+    public List<Movimiento> obtenerEgresosPorUsuario(Long usuarioId) {
+        return movimientoRepository.findEgresosByUsuarioIdOrderByFechaDesc(usuarioId);
+    }
+
+    public void eliminarMovimientoPorId(Integer movimientoId) {
+        if (!movimientoRepository.existsById(movimientoId)) {
+            throw new RuntimeException("Movimiento no encontrado con ID: " + movimientoId);
+        }
+        movimientoRepository.deleteById(movimientoId);
+    }
+
+    public Movimiento actualizarMovimiento(Integer movimientoId, Movimiento movimientoActualizado) {
+        Movimiento movimientoExistente = movimientoRepository.findById(movimientoId)
+                .orElseThrow(() -> new RuntimeException("Movimiento no encontrado con ID: " + movimientoId));
+
+        movimientoExistente.setDescripcion(movimientoActualizado.getDescripcion());
+        movimientoExistente.setMonto(movimientoActualizado.getMonto());
+        movimientoExistente.setFecha(movimientoActualizado.getFecha());
+        movimientoExistente.setTipo(movimientoActualizado.getTipo());
+        movimientoExistente.setPresupuesto(movimientoActualizado.getPresupuesto());
+
+        return movimientoRepository.save(movimientoExistente);
+    }
+
 }
