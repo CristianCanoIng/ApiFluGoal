@@ -57,4 +57,9 @@ public class MovimientoService {
         return movimientoRepository.save(movimientoExistente);
     }
 
+    public Movimiento obtenerMovimientoPorId(Integer movimientoId) {
+        return movimientoRepository.findById(movimientoId)
+                .orElseThrow(() -> new RuntimeException("Movimiento no encontrado con ID: " + movimientoId));
+    }
+
 }

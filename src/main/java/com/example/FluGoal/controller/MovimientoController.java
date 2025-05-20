@@ -56,4 +56,10 @@ public class MovimientoController {
         movimientoService.eliminarMovimientoPorId(movimientoId);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{movimientoId}")
+    public ResponseEntity<Movimiento> obtenerMovimientoPorId(@PathVariable Integer movimientoId) {
+        Movimiento movimiento = movimientoService.obtenerMovimientoPorId(movimientoId);
+        return ResponseEntity.ok(movimiento);
+    }
 }
